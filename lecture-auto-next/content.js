@@ -3,7 +3,7 @@ const DEFAULTS = {
   enabled: true,
   mode: 'button', // 'button' | 'url'
   nextSelector: '',
-  nextKeywords: '다음 차시, 다음차시, 다음 강의, 다음강의, 다음 회차, 다음회차, 다음 영상, 다음 페이지, 다음, Next',
+  nextKeywords: '다음 차시, 다음차시, 다음 강의, 다음강의, 다음 회차, 다음회차, 다음 영상, 다음 페이지, 次の動画, 次のレッスン, 次へ, 다음, Next',
   loop: true,
   firstUrl: '',
   urlPattern: '',
