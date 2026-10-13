@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font: 13px/1.4 system-ui, sans-serif; width: 340px; margin: 12px; color: #222; }
+  h1 { font-size: 15px; margin: 0 0 10px; }
+  fieldset { border: 1px solid #ddd; border-radius: 6px; margin: 8px 0; padding: 8px; }
+  legend { font-weight: 600; padding: 0 4px; }
+  label { display: block; margin: 6px 0; }
+  input[type=text], input[type=number], select { width: 100%; box-sizing: border-box; padding: 4px; }
+  .row { display: flex; gap: 6px; }
+  .row > * { flex: 1; }
+  button { padding: 6px 8px; cursor: pointer; }
+  .hint { color: #777; font-size: 11px; }
+  #status { background: #f4f4f4; border-radius: 4px; padding: 6px; font-size: 12px; min-height: 16px; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+  <h1>📻 강의 자동 넘김</h1>
+  <label><input type="checkbox" id="enabled"> <b>자동 넘김 켜기</b></label>
+  <label><input type="checkbox" id="loop"> 마지막 회차 후 1회차부터 반복 (라디오 모드)</label>
+
+  <label>이동 방식
+    <select id="mode">
+      <option value="button">페이지의 '다음' 버튼 클릭</option>
+      <option value="url">URL의 회차 번호 바꾸기</option>
+    </select>
+  </label>
+
+  <fieldset id="buttonBox">
+    <legend>버튼 방식</legend>
+    <label>1회차 URL (반복 시 돌아갈 주소)
+      <input type="text" id="firstUrl" placeholder="https://...">
+    </label>
+    <button id="setFirst">현재 페이지를 1회차로 지정</button>
+    <label>다음 버튼 키워드 (쉼표 구분, 앞쪽 우선)
+      <input type="text" id="nextKeywords">
+    </label>
+    <label>다음 버튼 CSS 선택자 (선택, 입력 시 키워드 대신 사용)
+      <input type="text" id="nextSelector" placeholder="예: .btn_next, #nextBtn">
+    </label>
+  </fieldset>
+
+  <fieldset id="urlBox">
+    <legend>URL 방식</legend>
+    <label>URL 패턴 ({n} = 회차 번호, {nn} = 01,02…)
+      <input type="text" id="urlPattern" placeholder="https://site.com/lecture?no={n}">
+    </label>
+    <div class="row">
+      <label>시작 회차 <input type="number" id="urlStart" min="0"></label>
+      <label>마지막 회차 <input type="number" id="urlEnd" min="0"></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>재생</legend>
+    <div class="row">
+      <label>넘기기 전 대기(초) <input type="number" id="delaySec" min="0"></label>
+      <label>재생 속도
+        <select id="playbackRate">
+          <option>0.75</option><option>1</option><option>1.25</option><option>1.5</option>
+          <option>1.75</option><option>2</option>
+        </select>
+      </label>
+    </div>
+    <label><input type="checkbox" id="autoPlay"> 페이지 열리면 자동 재생</label>
+    <label><input type="checkbox" id="autoConfirm"> "이동하시겠습니까?" 확인창 자동 확인</label>
+  </fieldset>
+
+  <div class="row">
+    <button id="save">저장</button>
+    <button id="nextNow">지금 다음으로 ▶▶</button>
+  </div>
+  <p class="hint">상태</p>
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
