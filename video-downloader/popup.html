@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font: 13px/1.4 system-ui, sans-serif; width: 380px; margin: 12px; color: #222; }
+  h1 { font-size: 15px; margin: 0 0 10px; display: flex; justify-content: space-between; align-items: center; }
+  button { padding: 5px 8px; cursor: pointer; }
+  ul { list-style: none; padding: 0; margin: 0; max-height: 420px; overflow-y: auto; }
+  li { border: 1px solid #ddd; border-radius: 6px; padding: 8px; margin: 6px 0; }
+  .url { font-size: 11px; color: #555; word-break: break-all; max-height: 3.6em; overflow: hidden; }
+  .meta { font-size: 11px; color: #888; margin: 4px 0; }
+  .tag { display: inline-block; background: #eef; border-radius: 3px; padding: 0 4px; margin-right: 4px; }
+  .tag.warn { background: #fde7c3; }
+  .btns { display: flex; gap: 6px; }
+  .hint { color: #777; font-size: 11px; }
+  #status { background: #f4f4f4; border-radius: 4px; padding: 6px; font-size: 12px; margin-top: 8px; }
+  #status:empty { display: none; }
+  label { font-size: 12px; }
+</style>
+</head>
+<body>
+  <h1>⬇️ 영상 다운로더 <button id="clear" title="목록 비우기">비우기</button></h1>
+  <label><input type="checkbox" id="saveAs"> 저장할 위치 매번 묻기</label>
+  <ul id="list"></ul>
+  <p id="empty" class="hint">
+    아직 찾은 영상이 없습니다. 페이지에서 영상을 <b>재생</b>한 뒤 다시 열어보세요.
+  </p>
+  <div id="status"></div>
+  <p class="hint">본인이 권리를 가졌거나 다운로드가 허용된 콘텐츠에만 사용하세요.</p>
+  <script src="popup.js"></script>
+</body>
+</html>
