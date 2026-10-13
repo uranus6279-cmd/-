@@ -3,7 +3,7 @@
   "name": "영상 다운로더 (Video Downloader)",
   "version": "1.0.0",
   "description": "웹페이지에서 재생되는 영상/음성 파일을 찾아 목록으로 보여주고 내려받습니다.",
-  "permissions": ["downloads", "webRequest", "storage", "tabs"],
+  "permissions": ["downloads", "webRequest", "storage", "tabs", "declarativeNetRequestWithHostAccess"],
   "host_permissions": ["<all_urls>"],
   "background": { "service_worker": "background.js" },
   "action": { "default_popup": "popup.html", "default_title": "영상 다운로더" },
@@ -13,6 +13,13 @@
       "js": ["content.js"],
       "all_frames": true,
       "run_at": "document_idle"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["main-world.js"],
+      "all_frames": true,
+      "run_at": "document_start",
+      "world": "MAIN"
     }
   ]
 }

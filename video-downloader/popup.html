@@ -17,6 +17,11 @@
   #status { background: #f4f4f4; border-radius: 4px; padding: 6px; font-size: 12px; margin-top: 8px; }
   #status:empty { display: none; }
   label { font-size: 12px; }
+  .state { font-size: 12px; margin-top: 6px; }
+  .state:empty { display: none; }
+  .state.running { color: #1a73e8; }
+  .state.done { color: #188038; }
+  .state.failed { color: #c5221f; background: #fce8e6; border-radius: 4px; padding: 4px 6px; }
 </style>
 </head>
 <body>
@@ -28,6 +33,7 @@
   </p>
   <div id="status"></div>
   <p class="hint">본인이 권리를 가졌거나 다운로드가 허용된 콘텐츠에만 사용하세요.</p>
+  <script src="reasons.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

@@ -20,6 +20,19 @@
     if (items.length) chrome.runtime.sendMessage({ type: "found", items }).catch(() => {});
   }
 
+  // main-world.js가 내용으로 찾아낸 m3u8 재생목록을 전달한다.
+  window.addEventListener("message", (e) => {
+    const d = e.data;
+    if (e.source !== window || d?.__videoDownloader !== "m3u8" || sent.has(d.url)) return;
+    if (!/^https?:/.test(d.url)) return;
+    sent.add(d.url);
+    chrome.runtime.sendMessage({
+      type: "found", items: [{ url: d.url, type: "application/vnd.apple.mpegurl" }],
+    }).catch(() => {});
+  });
+
+  window.postMessage({ __videoDownloader: "hello" }, "*");
+
   scan();
   new MutationObserver(() => scan()).observe(document.documentElement, {
     subtree: true, childList: true, attributes: true, attributeFilter: ["src"],
